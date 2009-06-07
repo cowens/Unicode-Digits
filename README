@@ -1,0 +1,56 @@
+Unicode-Digits
+
+    So, you have matched a string with "\d" and now want to do some math.
+    What is that you say?  The number your captured plus 5 is 5?  Oh, that
+    is right \d now matches UNICODE digits not [0−9].  What to do?  Well,
+    You can just call "digits_to_int" and all of your troubles* are over!
+
+        use Unicode::Digits;
+
+        my $string = "forty−two in Mongolian is \x{1814}\x{1812}";
+        my $num = digits_to_int $string =~ /(\d+)/;
+        print $num + 5, "\n";
+
+    Also try the refereshing dualvar varient:
+
+        my $dual = digits_to_dual $string =~ /(\d+)/;
+        print "$dual is ", $dual + 0, "\n";
+
+INSTALLATION
+
+To install this module, run the following commands:
+
+	perl Build.PL
+	./Build
+	./Build test
+	./Build install
+
+SUPPORT AND DOCUMENTATION
+
+After installing, you can find documentation for this module with the
+perldoc command.
+
+    perldoc Unicode::Digits
+
+You can also look for information at:
+
+    RT, CPAN's request tracker
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Unicode-Digits
+
+    AnnoCPAN, Annotated CPAN documentation
+        http://annocpan.org/dist/Unicode-Digits
+
+    CPAN Ratings
+        http://cpanratings.perl.org/d/Unicode-Digits
+
+    Search CPAN
+        http://search.cpan.org/dist/Unicode-Digits/
+
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2009 Chas. J. Owens IV
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
