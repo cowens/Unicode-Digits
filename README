@@ -5,16 +5,11 @@ Unicode-Digits
     is right \d now matches UNICODE digits not [0−9].  What to do?  Well,
     You can just call "digits_to_int" and all of your troubles* are over!
 
-        use Unicode::Digits;
+        use Unicode::Digits qw/digits_to_int/;
 
         my $string = "forty−two in Mongolian is \x{1814}\x{1812}";
         my $num = digits_to_int $string =~ /(\d+)/;
         print $num + 5, "\n";
-
-    Also try the refereshing dualvar varient:
-
-        my $dual = digits_to_dual $string =~ /(\d+)/;
-        print "$dual is ", $dual + 0, "\n";
 
 INSTALLATION
 
@@ -31,21 +26,6 @@ After installing, you can find documentation for this module with the
 perldoc command.
 
     perldoc Unicode::Digits
-
-You can also look for information at:
-
-    RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Unicode-Digits
-
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Unicode-Digits
-
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Unicode-Digits
-
-    Search CPAN
-        http://search.cpan.org/dist/Unicode-Digits/
-
 
 COPYRIGHT AND LICENCE
 

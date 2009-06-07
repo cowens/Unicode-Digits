@@ -4,5 +4,6 @@ MANIFEST
 README
 lib/Unicode/Digits.pm
 t/00-load.t
+t/01-digits_to_int.t
 t/pod-coverage.t
 t/pod.t

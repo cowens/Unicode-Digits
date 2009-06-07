@@ -4,11 +4,10 @@ use warnings;
 use strict;
 
 use Carp;
-use Scalar::Util qw/dualvar/;
 use Unicode::UCD qw/charinfo/;
 use Exporter     qw/import/;
 
-our @EXPORT_OK = qw(digits_to_int digits_to_dual);
+our @EXPORT_OK = qw(digits_to_int);
 
 =head1 NAME
 
@@ -43,6 +42,7 @@ Also try the refereshing dualvar varient:
 =head1 FUNCTIONS
 
 =head2 digits_to_int(STRING)
+
 =head2 digits_to_int(STRING, ERRORHANDLING)
 
 The digits_to_int function transliterates a string of UNICODE digit 
@@ -107,41 +107,23 @@ sub digits_to_int {
 	return $num;
 }
 
-=head2 digits_to_dual(STRING)
-=head2 digits_to_dual(STRING, ERRORHANDLING)
-
-The digits_to_dual function does the same thing as digits_to_int, but
-it returns a dual value variable instead of just a number, so in string
-context it yields the original string and in numeric context it yields
-the integer value.  Warning, the dual nature of this variable will not
-survive assignment.
-
-=cut
-
-sub digits_to_dual {
-	my ($string, $mode) = @_;
-	my $n = digits_to_int($string, $mode);
-	warn "[$n] {$string}";
-	return dualvar $n, $string;
-}
-
 =head1 AUTHOR
 
 Chas. J. Owens IV, C<< <chas.owens at gmail.com> >>
 
--head1 DIAGNOSTICS
+=head1 DIAGNOSTICS
 
 =over
 
 =item "wrong number of arguments"
 
-C<digits_to_int> and C<digits_to_dual> take one or two arguments, 
+C<digits_to_int> takes one or two arguments, 
 if you have more than two or no arguments you will recieve this error.
 
 =item "ERRORHANDLING must be strict, loose, looser, or loosest not '%s'"
 
 If you pass a second argument that is not strict, loose, looser, 
-or loosest to C<digits_to_int> and C<digits_to_dual>, you will
+or loosest to C<digits_to_int>, you will
 recieve this error.
 
 =item "string '%s' contains non-digit characters"
@@ -159,7 +141,7 @@ same range of digit characters.
 =item "U+%x claims to be a digit, but doesn't have a digit number"
 
 This error is unlikely to occur, if it does then the bug is either with
-my code (the likely senario) or C<Unicode::UCD> (not very likely).
+my code (the likely scenario) or C<Unicode::UCD> (not very likely).
 
 =back
 
