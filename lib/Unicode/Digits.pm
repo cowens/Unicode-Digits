@@ -28,16 +28,11 @@ What is that you say?  The number your captured plus 5 is 5?  Oh, that
 is right \d now matches UNICODE digits not [0-9].  What to do?  Well,
 You can just call C<digits_to_int> and all of your troubles* are over!
 
-    use Unicode::Digits qw/digits_to_int digits_to_dual/;
+    use Unicode::Digits qw/digits_to_int/;
 
     my $string = "forty-two in Mongolian is \x{1814}\x{1812}";
     my $num = digits_to_int $string =~ /(\d+)/;
     print $num + 5, "\n";
-
-Also try the refereshing dualvar varient:
-
-    my $dual = digits_to_dual $string =~ /(\d+)/;
-    print "$dual is ", $dual + 0, "\n";
 
 =head1 FUNCTIONS
 
