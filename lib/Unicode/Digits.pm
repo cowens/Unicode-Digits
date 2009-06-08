@@ -15,11 +15,11 @@ Unicode::Digits - Convert UNICODE digits to integers you can do math with
 
 =head1 VERSION
 
-Version 20090530
+Version 20090607
 
 =cut
 
-our $VERSION = '20090530';
+our $VERSION = '20090607';
 
 =head1 SYNOPSIS
 

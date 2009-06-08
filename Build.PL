@@ -8,8 +8,12 @@ my $builder = Module::Build->new(
     dist_author         => 'Chas. J. Owens IV <chas.owens@gmail.com>',
     dist_version_from   => 'lib/Unicode/Digits.pm',
     build_requires => {
+	'warnings'     => 0,
+	'strict'       => 0,
+	'Carp'         => 0,
+	'Unicode::UCD' => 0,
+	'Exporter'     => 0,
         'Test::More'   => 0,
-	'Scalar::Util' => 0,
     },
     add_to_cleanup      => [ 'Unicode-Digits-*' ],
     create_makefile_pl => 'traditional',
