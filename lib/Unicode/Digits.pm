@@ -43,20 +43,42 @@ Also try the refereshing dualvar varient:
 
 =head2 digits_to_int(STRING)
 
+The digits_to_int function transliterates a string of UNICODE digit 
+characters to a number you can do math with, non-digit characters are
+passed through, so C<"42 is \x{1814}\x{1812}"> becomes C<"42 is 42">.
+
 =head2 digits_to_int(STRING, ERRORHANDLING)
 
-The digits_to_int function transliterates a string of UNICODE digit 
-characters to a number you can do math with.  ERRORHANDLING can be one 
-of "strict", "loose", "looser", or "loosest".  When "strict" is used 
-all of the characters must be digit characters and they must all come 
+You can optionally pass an argument that controls what happens when
+the source string contains non-digit characters or characters from
+different sets of digits.  ERRORHANDLING can be one of C<"strict">, 
+C<"loose">, C<"looser">, or C<"loosest">.  Their behaviours are as 
+follows:
+
+=over
+
+=item strict
+
+All of the characters must be digit characters and they must all come 
 from the same range (so no mixing Monglian digits with Arabic-Indic 
-digits) or the function will croak.  If "loose" is in effect it will
-transliterate digits from different ranges, but will carp about it and
-will croak if there is a non-digit character.  If "looser" is in effect
-it will carp about about digits from different ranges and non-digit 
-characters, but will pass the non-digit characters through.  If 
-"loosest" is in effect it will will not carp or croak and will pass
-through any non-digit characters.  The default is "loosest".
+digits) or the function will die.
+
+=item loose
+
+All of the characters must be digit characters or it will die.
+If there are characters from different ranges you will get a warning.
+
+=item looser
+
+If there are any non digit characters, or the characters are from 
+different ranges, you will get a warning.
+
+=item loosest
+
+This is the default mode, all non-digit characters are passed through 
+witout warning, and the digits do not have to come from the same range.
+
+=back
 
 =cut
 
